@@ -9,7 +9,7 @@ const AllPost = () => {
   const fetchAllPosts = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:9000/api/posts/getAllPosts`,
+        `https://convo-chart-application-full.onrender.com/api/posts/getAllPosts`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

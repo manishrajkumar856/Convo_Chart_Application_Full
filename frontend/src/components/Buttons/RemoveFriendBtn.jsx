@@ -13,7 +13,7 @@ const AddFriendBtn = ({friendId}) => {
     console.log("hendling remove friend .... :", friendId, token)
 
     try {
-      const response = await axios.delete(`http://localhost:9000/api/friend/removeFriend/${friendId}`,
+      const response = await axios.delete(`https://convo-chart-application-full.onrender.com/api/friend/removeFriend/${friendId}`,
         {
           headers:{
             Authorization: `Bearer ${token}`

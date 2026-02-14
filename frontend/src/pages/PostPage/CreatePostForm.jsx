@@ -29,7 +29,7 @@ const CreatePostForm = ({ setClosePost }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:9000/api/posts/createNewPost",
+        "https://convo-chart-application-full.onrender.com/api/posts/createNewPost",
         fd,
         {
           headers: {

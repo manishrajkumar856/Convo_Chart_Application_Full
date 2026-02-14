@@ -53,7 +53,7 @@ const PostCardAll = ({ post }) => {
   // Handle Like btn
   const handleLikeBtn = async (e)=>{
     try {
-      const response = await axios.patch(`http://localhost:9000/api/posts/likePost/${post._id}`, 
+      const response = await axios.patch(`https://convo-chart-application-full.onrender.com/api/posts/likePost/${post._id}`, 
         {
           likeUserId: userData._id,
         },

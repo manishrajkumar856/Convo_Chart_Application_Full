@@ -14,7 +14,7 @@ const PeoplePage = () => {
     console.log(userData._id);
     try {
       const response = await axios.get(
-        "http://localhost:9000/api/getFriendSugg/",
+        "https://convo-chart-application-full.onrender.com/api/getFriendSugg/",
         {
           headers: {
             Authorization: `Bearer ${token}`,

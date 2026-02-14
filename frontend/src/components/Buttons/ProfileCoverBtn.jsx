@@ -20,7 +20,7 @@ const ProfileCoverBtn = () => {
       fd.append("profileCoverPicData", file);
       fd.append("userId", userData._id);
 
-      const response = await axios.patch('http://localhost:9000/api/profile/changeProfileCoverPic',
+      const response = await axios.patch('https://convo-chart-application-full.onrender.com/api/profile/changeProfileCoverPic',
         fd,
         {
           headers: {

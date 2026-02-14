@@ -20,7 +20,7 @@ const CommentBox = ({post}) => {
     }
 
     try {
-      const response = await axios.post("http://localhost:9000/api/posts/addNewComment",
+      const response = await axios.post("https://convo-chart-application-full.onrender.com/api/posts/addNewComment",
         commentData,
         {
           headers: {

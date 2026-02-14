@@ -45,7 +45,7 @@ const CreateStory = ({setIsStoryClicked}) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:9000/api/story/createNewStory",
+        "https://convo-chart-application-full.onrender.com/api/story/createNewStory",
         fd,
         {
           headers: {

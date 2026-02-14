@@ -17,7 +17,7 @@ const VerifyForm = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:9000/api/user/auth/verify",
+        "https://convo-chart-application-full.onrender.com/api/user/auth/verify",
         {
           otp: getOtp,
           email: email,
@@ -44,7 +44,7 @@ const VerifyForm = () => {
     console.log("Hello Cancle", event)
     try {
         const response = await axios.post(
-        "http://localhost:9000/api/user/auth/cancle",
+        "https://convo-chart-application-full.onrender.com/api/user/auth/cancle",
         {
           email: email,
         },

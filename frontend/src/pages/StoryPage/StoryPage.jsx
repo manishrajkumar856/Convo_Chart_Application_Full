@@ -10,7 +10,7 @@ const StoryPage = ({ setStoryOpenContainer, userId, userInf }) => {
   async function findAllPostById(id) {
     try {
       const response = await axios.get(
-        `http://localhost:9000/api/story/getAllStory/${id}`,
+        `https://convo-chart-application-full.onrender.com/api/story/getAllStory/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

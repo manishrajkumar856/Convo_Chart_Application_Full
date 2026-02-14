@@ -56,7 +56,7 @@ const PostCard = ({ post }) => {
     console.log("Handle Delete:", post);
     try {
       const response = await axios.delete(
-        `http://localhost:9000/api/posts/deletePost/${post._id}`,
+        `https://convo-chart-application-full.onrender.com/api/posts/deletePost/${post._id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -75,7 +75,7 @@ const PostCard = ({ post }) => {
   const handleLikeBtn = async (e) => {
     try {
       const response = await axios.patch(
-        `http://localhost:9000/api/posts/likePost/${post._id}`,
+        `https://convo-chart-application-full.onrender.com/api/posts/likePost/${post._id}`,
         {
           likeUserId: userData._id,
         },

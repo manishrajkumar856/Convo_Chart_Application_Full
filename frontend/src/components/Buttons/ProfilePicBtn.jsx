@@ -23,7 +23,7 @@ const ProfilePicBtn = () => {
             fd.append('profilePicData', event.target.files[0]);
             fd.append('userId', userData._id);
 
-            const response = await axios.patch('http://localhost:9000/api/profile/changeProfilePic',
+            const response = await axios.patch('https://convo-chart-application-full.onrender.com/api/profile/changeProfilePic',
                 fd,
                 {
                     headers: {

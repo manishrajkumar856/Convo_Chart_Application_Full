@@ -15,7 +15,7 @@ const PostPage = () => {
     console.log(id);
     try {
       const response = await axios.get(
-        `http://localhost:9000/api/posts/getPostById/${id}`,
+        `https://convo-chart-application-full.onrender.com/api/posts/getPostById/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

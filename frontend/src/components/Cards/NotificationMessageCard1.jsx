@@ -12,7 +12,7 @@ const NotificationMessageCard1 = ({ data }) => {
   async function getDataUsingId(id) {
     try {
       const response = await axios.get(
-        `http://localhost:9000/api/getUser/${id}`,
+        `https://convo-chart-application-full.onrender.com/api/getUser/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -29,7 +29,7 @@ const NotificationMessageCard1 = ({ data }) => {
   const reject_handler = async (event) => {
     try {
       const response = await axios.post(
-        `http://localhost:9000/api/reject_request/${data.senderId}`,
+        `https://convo-chart-application-full.onrender.com/api/reject_request/${data.senderId}`,
         {
           userId: userData._id,
         },
@@ -52,7 +52,7 @@ const NotificationMessageCard1 = ({ data }) => {
     console.log(data.senderId);
     try {
       const response = await axios.post(
-        `http://localhost:9000/api/accept_request/${userData._id}`,
+        `https://convo-chart-application-full.onrender.com/api/accept_request/${userData._id}`,
         {
           receiverId: data.receiverId,
           senderId: data.senderId,

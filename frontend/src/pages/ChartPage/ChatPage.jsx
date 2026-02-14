@@ -61,7 +61,7 @@ const ChatPage = () => {
   const getAllMessage = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:9000/api/chat/getAllChat",
+        "https://convo-chart-application-full.onrender.com/api/chat/getAllChat",
         {
           yourId: userData._id,
           friendId: friendId,
