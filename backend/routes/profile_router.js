@@ -7,30 +7,34 @@ import path from 'path'
 const profileRouter = express.Router();
 
 
-// Multer Storage Config - For Profile
-const storage = multer.diskStorage({
-    destination: (req, res, cb)=>{
-        cb(null, "uploads/Images/profilePic");  // Save files in /uploads folder
-    },
-    filename: (req, file, cb)=>{
-        cb(null, Date.now() + path.extname(file.originalname));  // Unique filename
-    }
-})
+// // Multer Storage Config - For Profile
+// const storage = multer.diskStorage({
+//     destination: (req, res, cb)=>{
+//         cb(null, "uploads/Images/profilePic");  // Save files in /uploads folder
+//     },
+//     filename: (req, file, cb)=>{
+//         cb(null, Date.now() + path.extname(file.originalname));  // Unique filename
+//     }
+// })
+// const upload = multer({storage});
+
+// // Multer Storage Config - For ProfileCover
+// const storage2 = multer.diskStorage({
+//     destination: (req, res, cb)=>{
+//         cb(null, "uploads/Images/profileCover"); // Save files in /uploads folder
+//     },
+
+//     filename: (req, file, cb)=>{
+//         cb(null, Date.now() + path.extname(file.originalname)); // Unique filename
+//     }
+// })
+// const upload2 = multer({storage:storage2});
+
+
+const storage = multer.memoryStorage();
 const upload = multer({storage});
 
-// Multer Storage Config - For ProfileCover
-const storage2 = multer.diskStorage({
-    destination: (req, res, cb)=>{
-        cb(null, "uploads/Images/profileCover"); // Save files in /uploads folder
-    },
-
-    filename: (req, file, cb)=>{
-        cb(null, Date.now() + path.extname(file.originalname)); // Unique filename
-    }
-})
-const upload2 = multer({storage:storage2});
-
 profileRouter.patch('/changeProfilePic',isAuthenticated, upload.single("profilePicData"), handleProfilePicChange);
-profileRouter.patch('/changeProfileCoverPic', isAuthenticated, upload2.single("profileCoverPicData"), handleProfileCoverPicChange);
+profileRouter.patch('/changeProfileCoverPic', isAuthenticated, upload.single("profileCoverPicData"), handleProfileCoverPicChange);
 
 export default profileRouter; 

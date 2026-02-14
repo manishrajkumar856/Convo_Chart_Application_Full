@@ -7,14 +7,18 @@ import path from "path";
 const postRouter = express.Router();
 
 // Strage
-const storage = multer.diskStorage({
-    destination: (req, res, cb) =>{
-        cb(null, 'uploads/Posts');  // Save files in upload folder
-    },
-    filename: (req, file, cb)=>{
-        cb(null, Date.now() + path.extname(file.originalname)); // Unique Filename
-    }
-});
+// const storage = multer.diskStorage({
+//     destination: (req, res, cb) =>{
+//         cb(null, 'uploads/Posts');  // Save files in upload folder
+//     },
+//     filename: (req, file, cb)=>{
+//         cb(null, Date.now() + path.extname(file.originalname)); // Unique Filename
+//     }
+// });
+
+
+// For image Kit 
+const storage = multer.memoryStorage();
 
 const upload = multer({storage})
 

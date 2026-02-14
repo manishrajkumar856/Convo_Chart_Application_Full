@@ -8,15 +8,16 @@ import { createNewStory, getAllStoryById } from "../controller/story_controller.
 const storyRouter = express.Router();
 
 //Storage 
-const storage = multer.diskStorage({
-    destination: (req, res, cb)=>{
-        cb(null, 'uploads/Story');
-    },
-    filename: (req, file, cb) =>{
-        cb(null, Date.now() + path.extname(file.originalname));
-    }
-});
+// const storage = multer.diskStorage({
+//     destination: (req, res, cb)=>{
+//         cb(null, 'uploads/Story');
+//     },
+//     filename: (req, file, cb) =>{
+//         cb(null, Date.now() + path.extname(file.originalname));
+//     }
+// });
 
+const storage = multer.memoryStorage();
 const upload = multer({storage});
 
 storyRouter.post('/createNewStory',isAuthenticated, upload.single("story"), createNewStory);

@@ -27,7 +27,7 @@ export const handleProfilePicChange = async (req, res) => {
   let result;
   try {
     result = await imageKit.files.upload({
-      file: await toFile(Buffer.from(Buffer.from(file.buffer), 'file')),
+      file: await toFile(Buffer.from(file.buffer), 'file'),
       fileName: file.originalname,
       folder: "/Convo_Chart/Profile/profile_pic",
     });

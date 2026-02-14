@@ -1,9 +1,32 @@
 import { postModal } from "../modals/post_modal.js";
 import fs from 'fs';
 import path from "path";
+import ImageKit, { toFile } from '@imagekit/nodejs';
+
+
+// Initialize image kit
+const imageKit = new ImageKit({
+    privateKey: process.env.IMAGEKIT_PRIVATE_KEY,
+    publicKey: process.env.IMAGEKIT_PUBLIC_KEY,
+    urlEndpoint: process.env.URL_END_POINT,
+})
 
 export const createNewPost = async (req, res)=>{
-    console.log(req.file, req.body);
+    
+    let fileData;
+    if(req.file){
+        console.log(req.file)
+        try {
+            // Upload Image to the Image Kit
+            fileData = await imageKit.files.upload({
+                file: await toFile(Buffer.from(req.file.buffer), 'file'),
+                fileName: req.file.originalname,
+                folder: "/Convo_Chart/Posts"
+            })
+        } catch (error) {
+            console.log("ERROR!: ",error);
+        }
+    }
 
     try {
         const newPost = await postModal.create({
@@ -11,9 +34,8 @@ export const createNewPost = async (req, res)=>{
             postDescription: req.body.description,
             postType: req.file && req.body.postType,
             postData: req.file && {
-                destination: req.file.destination,
-                filename: req.file.filename,
-                postUrl: `http://localhost:9000/${req.file.destination}/${req.file.filename}`,
+                filename: fileData.fileId,
+                postUrl: fileData.url,
             },
         });
 
@@ -123,8 +145,6 @@ export const deletePostById = async (req, res) =>{
     try {
         const post = await postModal.findById(postId);
 
-        console.log(post);
-
         if(!post){
             return res.status(404).json({
                 success: false,
@@ -133,17 +153,25 @@ export const deletePostById = async (req, res) =>{
         }
 
 
-        if(post.postData){
-            const filePath = path.join(post.postData.destination, post.postData.filename);
-           
-            fs.unlink(filePath, (err)=>{
-                if(err){
-                    console.log("Error while deleting file!");
-                }
-                else{
-                    console.log("Delete file successfully!");
-                }
-            });
+        if(post.postData){           
+            console.log(post.postData);
+
+            // fs.unlink(filePath, (err)=>{
+            //     if(err){
+            //         console.log("Error while deleting file!");
+            //     }
+            //     else{
+            //         console.log("Delete file successfully!");
+            //     }
+            // });
+
+
+            // Delet File for image kit 
+            try {
+                const deleteFile = await imageKit.files.delete(post.postData.filename);
+            } catch (error) {
+        
+            }
         }
 
         await postModal.findByIdAndDelete(postId);

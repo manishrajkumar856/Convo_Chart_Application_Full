@@ -215,7 +215,7 @@ export const verifyUser = async (req, res) => {
       });
     }
 
-    if (user.otp === otp || otp === "1234") {
+    if (user.otp === otp) {
       user.token = null;
       user.isVerify = true;
       user.otp = null;
