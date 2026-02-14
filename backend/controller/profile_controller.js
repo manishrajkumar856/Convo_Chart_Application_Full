@@ -1,7 +1,16 @@
-import path from "path";
+import "dotenv";
 import { User } from "../modals/user_model.js";
-import fs from "fs";
+import ImageKit, { toFile } from "@imagekit/nodejs";
 
+
+const imageKit = new ImageKit({
+  privateKey: process.env.IMAGEKIT_PRIVATE_KEY,
+  publicKey: process.env.IMAGEKIT_PUBLIC_KEY,
+  urlEndpoint: process.env.URL_END_POINT,
+});
+
+
+// Profile Pic Image 
 export const handleProfilePicChange = async (req, res) => {
   const userId = req.body.userId;
   const file = req.file;
@@ -13,10 +22,21 @@ export const handleProfilePicChange = async (req, res) => {
     });
   }
 
+
+  // Upload Files
+  let result;
+  try {
+    result = await imageKit.files.upload({
+      file: await toFile(Buffer.from(Buffer.from(file.buffer), 'file')),
+      fileName: file.originalname,
+      folder: "/Convo_Chart/Profile/profile_pic",
+    });
+  } catch (error) {
+  }
+
   const profileData = {
-    fileName: req.file.filename,
-    path: req.file.destination,
-    profileUrl: `http://localhost:9000/${req.file.destination}/${req.file.filename}`,
+    fileName: result.fileId,
+    profileUrl: result.url,
     uploadDate: Date.now(),
   };
 
@@ -34,19 +54,10 @@ export const handleProfilePicChange = async (req, res) => {
     // Check User.profilePicInfo Exist then delete and save new one
     if (user.profilePicInfo) {
       // Find and delete existing images from upload
-      const oldFilePath = path.join(
-        user.profilePicInfo.path,
-        user.profilePicInfo.fileName,
-      );
-      fs.unlink(oldFilePath, (err) => {
-        if (err) {
-          console.error("Error deleting old profile picture:", err);
-        } else {
-          console.log("Old profile picture deleted:", oldFilePath);
-        }
-      });
-
-      user.profilePicInfo = null;
+     try {
+      const deleteFile = await imageKit.files.delete(user.profilePicInfo.fileName);
+     } catch (error) {
+     }
     }
 
     user.profilePicInfo = profileData;
@@ -59,9 +70,10 @@ export const handleProfilePicChange = async (req, res) => {
   } catch (error) {}
 };
 
-export const handleProfileCoverPicChange = async (req, res) => {
-  console.log(req.body, req.file);
 
+
+// Profile Cover Image
+export const handleProfileCoverPicChange = async (req, res) => {
   const userId = req.body.userId;
   const file = req.file;
 
@@ -72,10 +84,16 @@ export const handleProfileCoverPicChange = async (req, res) => {
     });
   }
 
+  // Upload into Image Kit
+  const result = await imageKit.files.upload({
+    file: await toFile(Buffer.from(file.buffer), "file"),
+    fileName: file.originalname,
+    folder: "/Convo_Chart/Profile/profile_cover",
+  });
+
   const profileCoverData = {
-    fileName: file.filename,
-    path: file.destination,
-    profileCoverUrl: `http://localhost:9000/${file.destination}/${file.filename}`,
+    fileName: result.fileId,
+    profileCoverUrl: result.url,
     uploadDate: Date.now(),
   };
 
@@ -90,27 +108,19 @@ export const handleProfileCoverPicChange = async (req, res) => {
       });
     }
 
-    // Find user.profileCoverPic exist or not if exist-> Delete it and save new one
-    if (user.profileCoverPicInof) {
-      // Find and delete existing images from upload
-      const oldFilePath = path.join(
-        user.profileCoverPicInof.path,
-        user.profileCoverPicInof.fileName,
-      );
-      
-      fs.unlink(oldFilePath, (err) => {
-        if (err) {
-          console.log("Error: ", err);
-        } else {
-          console.log("Old profile picture deleted:", oldFilePath);
-        }
-
-        user.profileCoverPicInof = null;
-      });
+    // Find user.profileCoverPic exist or not if exist-> Delete it from image kit and save new one
+    if (user.profileCoverPicInof?.fileName) {
+      try {
+        const deleteFile = await imageKit.files.delete(
+          user.profileCoverPicInof.fileName,
+        );
+        console.log("Deleted old file:", deleteFile);
+      } catch (err) {
+        console.error("Error deleting old file:", err);
+      }
     }
 
     user.profileCoverPicInof = profileCoverData;
-    console.log("User Save:",user);
     await user.save();
 
     return res.status(201).json({
