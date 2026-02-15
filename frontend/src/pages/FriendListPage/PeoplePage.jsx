@@ -11,7 +11,6 @@ const PeoplePage = () => {
   const [getPeoples, setPeoples] = useState(null);
 
   const peopleList = async () => {
-    console.log(userData._id);
     try {
       const response = await axios.get(
         "https://convo-chart-application-full.onrender.com/api/getFriendSugg/",
@@ -25,7 +24,7 @@ const PeoplePage = () => {
         },
       );
 
-      console.log(response.data);
+     
       setPeoples(response.data.friendSuggestionList);
       setPeopleList(response.data.friendSuggestionList);
     } catch (error) {}

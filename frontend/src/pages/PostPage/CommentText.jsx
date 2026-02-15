@@ -8,7 +8,7 @@ const CommentText = ({comment}) => {
     const getData = async ()=>{
         const data = await getDataUsingId(comment.commentedBy);
         setCommentUser(data);
-        console.log(data);
+       
     }
 
     useEffect(()=>{

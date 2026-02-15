@@ -46,7 +46,7 @@ const SignupForm = () => {
   const navigate = useNavigate();
 
   const handleChange = (event)=>{
-    console.log(getSignupData);
+  
     setSignupData((prev)=>{
       return {...prev, [event.target.name] : event.target.value}
     })
@@ -54,14 +54,14 @@ const SignupForm = () => {
 
   const handleSubmitHandler = async (event)=>{
     event.preventDefault();
-    console.log(getSignupData);
+ 
 
     try {
       const response = await axios.post('https://convo-chart-application-full.onrender.com/api/user/auth/signup',
         { UserData: getSignupData }
       );
 
-      console.log(response.data);
+
 
       if(response.data.success){
         navigate('http://localhost:5173/signup/verify', {state: {email:getSignupData.email}})

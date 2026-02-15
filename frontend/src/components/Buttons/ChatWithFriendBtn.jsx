@@ -8,7 +8,7 @@ const AddFriendBtn = ({friendId}) => {
   const navigate = useNavigate();
 
   const chat_handler = ()=>{
-    console.log("Chat Handler Success!");
+    
     navigate(`/friends/chat/${friendId}`, {
       state: {friendId: friendId}
     });

@@ -13,7 +13,7 @@ const FriendCard = ({ cardData, imgData }) => {
 
   const sendFriendRequest = async (event) => {
     event.stopPropagation(); // Prevetn from firing parent
-    console.log("HellosS")
+    
     const requestData = {
       senderId: userData._id,
       receiverId: cardData._id,
@@ -31,11 +31,11 @@ const FriendCard = ({ cardData, imgData }) => {
         },
       );
 
-      console.log("Res: ", response);
+     
       fetchUserData();
       
     } catch (error) {
-      console.log("Error:",error);
+     
     }
   };
 
@@ -50,7 +50,7 @@ const FriendCard = ({ cardData, imgData }) => {
 
     try {
       const response = await axios.post(
-        "https://convo-chart-application-full.onrender.com/api/cancle_req uest/",
+        "https://convo-chart-application-full.onrender.com/api/cancle_request/",
         requestData,
         {
           headers: {
@@ -59,11 +59,11 @@ const FriendCard = ({ cardData, imgData }) => {
         },
       );
 
-      console.log("Res: ", response);
+     
       fetchUserData();
       
     } catch (error) {
-      console.log("Error:",error);
+     
     }
   };
 

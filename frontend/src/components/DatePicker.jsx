@@ -3,10 +3,7 @@ import React from 'react'
 const DatePicker = ({ option, type, names, values, getSignupData, setSignupData}) => {
 
   const handleChange2 = (event)=>{
-    console.log("Sat",getSignupData);
-    console.log(setSignupData);
-    console.log(event.target.name)
-    console.log(event, "Sfdksklfjsl");
+    
 
     setSignupData(()=>{
       return {...getSignupData, dob: {...getSignupData.dob, [event.target.name]:event.target.value}};

@@ -67,7 +67,7 @@ const HomePage = () => {
       
         {userData &&
           userData.friendList.map((frId, idx) => {
-            return <StatusCard id={frId} />
+            return <StatusCard key={idx} id={frId} />
           })}
       </div>
 

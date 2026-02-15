@@ -13,7 +13,7 @@ const VerifyForm = () => {
 
   const handleSubmitHandler = async (event) => {
     event.preventDefault();
-    console.log("FLDSKF",getOtp, email);
+    
 
     try {
       const response = await axios.post(
@@ -24,7 +24,7 @@ const VerifyForm = () => {
         },
       );
 
-      console.log(response.data);
+   
 
       if (response.data.success) {
         navigate("/login");
@@ -41,7 +41,7 @@ const VerifyForm = () => {
   };
 
   const handleCancleBtn = async (event)=>{
-    console.log("Hello Cancle", event)
+   
     try {
         const response = await axios.post(
         "https://convo-chart-application-full.onrender.com/api/user/auth/cancle",
@@ -50,17 +50,17 @@ const VerifyForm = () => {
         },
       );
 
-      console.log(response.data);
+     
       navigate('/signup/signin')
     } catch (error) {
-        console.log("Error Message: ", error)
+        
         setErrorMessage(error.response.data.message);
     }
   }
 
 
   const handleChange = (event) => {
-    console.log(getOtp);
+   
     setOtp(event.target.value);
   };
 

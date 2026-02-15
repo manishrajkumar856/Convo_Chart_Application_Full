@@ -27,7 +27,6 @@ function DataContextProvider({ children }) {
       });
 
       setUserData(res.data.userData);
-      console.log(res.data);
       return true;
     } catch (error) {
       console.error(error);
@@ -52,7 +51,6 @@ function DataContextProvider({ children }) {
 
       return response.data.data;
     } catch (error) {
-      console.log("ERROR: ", error);
       return error;
     }
   }

@@ -29,12 +29,12 @@ const ProfileCoverBtn = () => {
         }
       );
 
-      console.log(response);
+     
 
       fetchUserData();
 
     } catch (error) {
-      console.log("Error: ",error);
+     
     }
   };
 

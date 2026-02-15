@@ -18,11 +18,10 @@ const StoryPage = ({ setStoryOpenContainer, userId, userInf }) => {
         },
       );
 
-      console.log(response);
       setStories(response.data.stories);
       selectWhatToRun();
     } catch (error) {
-      console.log(error);
+     
     }
   }
 
@@ -30,7 +29,7 @@ const StoryPage = ({ setStoryOpenContainer, userId, userInf }) => {
   useEffect(() => {
     if (!stories) return;
 
-    console.log("Stories length:", stories.length);
+    
 
     const interval = setInterval(() => {
       setCurrStory((prev) => {

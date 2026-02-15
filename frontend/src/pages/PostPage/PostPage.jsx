@@ -12,7 +12,7 @@ const PostPage = () => {
   const { userData } = useContext(UserDataContext);
 
   const fetchPosts = async (id) => {
-    console.log(id);
+    
     try {
       const response = await axios.get(
         `https://convo-chart-application-full.onrender.com/api/posts/getPostById/${id}`,
@@ -23,7 +23,7 @@ const PostPage = () => {
         },
       );
 
-      console.log(response.data.posts);
+
       setPosts(response.data.posts);
       console.log("Post:", getPosts);
     } catch (error) {
@@ -52,7 +52,7 @@ const PostPage = () => {
         <div className="w-full columns-1 lg:columns-2 gap-6 mt-5 ">
           {getPosts &&
             getPosts.map((post, idx) => {
-              console.log(post);
+             
               return (
                 <div key={idx} className="w-full mb-5">
                   <PostCard post={post} />

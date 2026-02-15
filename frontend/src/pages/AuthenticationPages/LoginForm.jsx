@@ -17,7 +17,7 @@ const LoginForm = () => {
   })
 
   const handleChange = (event)=>{
-    console.log(getLoginForm)
+    
     setLoginForm((prev)=>{
       return {...prev, [event.target.name]: event.target.value}
     })
@@ -25,13 +25,13 @@ const LoginForm = () => {
  
   const handleSubmitHandler = async (event)=>{
     event.preventDefault();
-    console.log(getLoginForm);
+  
     try {
       const response = await axios.post('https://convo-chart-application-full.onrender.com/api/user/auth/login',
         { getLoginForm }
       );
 
-      console.log("Response:",response.data);
+      
 
       if(response.data.success){
 

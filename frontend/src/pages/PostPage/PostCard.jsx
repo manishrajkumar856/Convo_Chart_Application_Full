@@ -53,7 +53,7 @@ const PostCard = ({ post }) => {
 
   // Delete post by id
   const handleDeletePost = async () => {
-    console.log("Handle Delete:", post);
+    
     try {
       const response = await axios.delete(
         `https://convo-chart-application-full.onrender.com/api/posts/deletePost/${post._id}`,
@@ -64,7 +64,7 @@ const PostCard = ({ post }) => {
         },
       );
 
-      console.log(response);
+      
       fetchUserData();
     } catch (error) {
       console.log(error);

@@ -54,7 +54,7 @@ const CreateStory = ({setIsStoryClicked}) => {
         }
       )
 
-      console.log(response);
+  
       fetchUserData();
     } catch (error) {
       console.log(error);

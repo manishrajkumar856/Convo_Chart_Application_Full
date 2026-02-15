@@ -39,7 +39,7 @@ const ChatPage = () => {
     });
 
     socket.on("welcome", (msg) => {
-      console.log("Emited Msg: ", msg);
+      
     });
   }, [friendId]);
 
@@ -68,11 +68,11 @@ const ChatPage = () => {
         },
       );
 
-      console.log(response);
+      
 
       setMessages(response.data.chats);
     } catch (error) {
-      console.log(error);
+     
     }
   };
 
@@ -124,7 +124,7 @@ function dateConverter(dateStr) {
 }
 
 // Example usage:
-console.log(dateConverter("2026-02-10T06:00:00Z"));
+// console.log(dateConverter("2026-02-10T06:00:00Z"));
 // Output: "10 Feb at - 11hr : 30min"
 
   return (

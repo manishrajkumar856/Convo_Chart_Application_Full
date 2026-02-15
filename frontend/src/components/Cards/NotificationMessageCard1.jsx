@@ -40,7 +40,7 @@ const NotificationMessageCard1 = ({ data }) => {
         },
       );
 
-      console.log(response);
+     
       fetchUserData();
     } catch (error) {
       console.log(error);
@@ -49,7 +49,7 @@ const NotificationMessageCard1 = ({ data }) => {
 
 
   const accept_handler = async (event) => {
-    console.log(data.senderId);
+    
     try {
       const response = await axios.post(
         `https://convo-chart-application-full.onrender.com/api/accept_request/${userData._id}`,
@@ -64,7 +64,7 @@ const NotificationMessageCard1 = ({ data }) => {
         },
       );
 
-      console.log(response);
+   
       fetchUserData();
     } catch (error) {
       console.log(error);

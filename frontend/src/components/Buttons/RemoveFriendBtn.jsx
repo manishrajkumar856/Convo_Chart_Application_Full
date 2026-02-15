@@ -10,7 +10,7 @@ const AddFriendBtn = ({friendId}) => {
   const {userData, fetchUserData} = useContext(UserDataContext);
 
   const handleRemoveFriend = async ()=>{
-    console.log("hendling remove friend .... :", friendId, token)
+    
 
     try {
       const response = await axios.delete(`https://convo-chart-application-full.onrender.com/api/friend/removeFriend/${friendId}`,
@@ -24,12 +24,12 @@ const AddFriendBtn = ({friendId}) => {
         }
       );
 
-      console.log(response.data);
+     
       fetchUserData();
 
 
     } catch (error) {
-      console.log(error);
+      
     }
   }
 

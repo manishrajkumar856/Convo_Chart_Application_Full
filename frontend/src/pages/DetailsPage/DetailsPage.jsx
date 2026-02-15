@@ -12,7 +12,7 @@ const DetailsPage = () => {
   const location = useLocation();
   const {cardData} = location.state || {};
 
-  console.log("Card Data: ",cardData);
+ 
 
   return (
     <div className="w-full flex flex-col justify-center items-center  px-5">

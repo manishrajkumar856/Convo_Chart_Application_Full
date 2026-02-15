@@ -17,7 +17,7 @@ const AllPost = () => {
         },
       );
 
-      console.log(response.data.posts);
+      
       setPosts(response.data.posts);
       console.log("Post:", getPosts);
     } catch (error) {
